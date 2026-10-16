@@ -236,15 +236,15 @@
                         <i class="ph ph-tent text-3xl"></i>
                     </div>
                     <h3 class="font-serif text-xl mb-3 text-darkgray">Salão Coberto</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">Amplo salão com arquitetura rústico-chic, climatizado e com capacidade para até 300 convidados confortavelmente acomodados.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Amplo salão com arquitetura rústico-chic para até 200 convidados, espaço para buffet e lustres elegantes.</p>
                 </div>
 
                 <div class="bg-offwhite p-8 rounded-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100 group text-center">
                     <div class="w-16 h-16 bg-sage/10 text-sage rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-sage group-hover:text-white transition-colors duration-300">
                         <i class="ph ph-tree text-3xl"></i>
                     </div>
-                    <h3 class="font-serif text-xl mb-3 text-darkgray">Cerimônia ao Ar Livre</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">Diversos cenários naturais incríveis, incluindo um pergolado romântico integrado aos jardins floridos do recanto.</p>
+                    <h3 class="font-serif text-xl mb-3 text-darkgray">Espaço de Cerimônia</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Salão coberto e aconchegante com cenários naturais, incluindo lago, ponte e fonte para fotos inesquecíveis.</p>
                 </div>
 
                 <div class="bg-offwhite p-8 rounded-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100 group text-center">
@@ -252,15 +252,15 @@
                         <i class="ph ph-crown text-3xl"></i>
                     </div>
                     <h3 class="font-serif text-xl mb-3 text-darkgray">Suíte da Noiva</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">Um espaço privativo, luxuoso e aconchegante para o making of, com iluminação perfeita para fotos e relaxamento.</p>
+                    <p class="text-sm text-gray-500 leading-relaxed">Ambiente privativo e acolhedor para o making of e preparação dos noivos, com ótima iluminação para fotos.</p>
                 </div>
 
                 <div class="bg-offwhite p-8 rounded-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100 group text-center">
                     <div class="w-16 h-16 bg-sage/10 text-sage rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-sage group-hover:text-white transition-colors duration-300">
                         <i class="ph ph-car text-3xl"></i>
                     </div>
-                    <h3 class="font-serif text-xl mb-3 text-darkgray">Estacionamento</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">Amplo estacionamento interno e seguro, com serviço de valet opcional para total comodidade desde a chegada.</p>
+                    <h3 class="font-serif text-xl mb-3 text-darkgray">Área Externa e Piscina</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Área ao ar livre com piscina e cenários integrados à natureza para momentos de lazer e celebração.</p>
                 </div>
             </div>
         </div>
@@ -679,7 +679,7 @@
                 <!-- Formulário -->
                 <div class="bg-white rounded-sm p-8 shadow-2xl relative">
                     <div class="absolute -top-3 -right-3 w-20 h-20 bg-sage/20 rounded-full blur-xl"></div>
-                    <form class="space-y-6 relative z-10" onsubmit="event.preventDefault(); document.getElementById('success-msg').classList.remove('hidden'); this.reset();">
+                    <form id="orcamento-form" class="space-y-6 relative z-10">
                         <h3 class="font-serif text-2xl text-darkgray mb-6">Solicite um orçamento</h3>
                         
                         <div>
@@ -838,6 +838,51 @@
                 if (e.key === 'ArrowLeft') prevImage();
             }
         });
+
+        // --- SCRIPT PARA ENVIO DO FORMULÁRIO VIA WHATSAPP ---
+        const formOrcamento = document.getElementById('orcamento-form');
+        
+        if (formOrcamento) {
+            formOrcamento.addEventListener('submit', function(e) {
+                e.preventDefault(); 
+                
+                const nome = document.getElementById('nome').value;
+                const email = document.getElementById('email').value;
+                const telefone = document.getElementById('telefone').value;
+                const data = document.getElementById('data').value;
+                const convidadosSelect = document.getElementById('convidados');
+                const convidadosText = convidadosSelect.options[convidadosSelect.selectedIndex].text;
+                const mensagem = document.getElementById('mensagem').value;
+
+                let dataFormatada = 'Não definida';
+                if (data) {
+                    const [ano, mes, dia] = data.split('-');
+                    dataFormatada = `${dia}/${mes}/${ano}`;
+                }
+
+                let textoMsg = `Olá, Recanto Sollare! Gostaria de solicitar um orçamento.%0A%0A`;
+                textoMsg += `*Nome dos Noivos:* ${nome}%0A`;
+                textoMsg += `*E-mail:* ${email}%0A`;
+                textoMsg += `*Telefone:* ${telefone}%0A`;
+                textoMsg += `*Data Prevista:* ${dataFormatada}%0A`;
+                
+                if (convidadosSelect.value) {
+                    textoMsg += `*Nº de Convidados:* ${convidadosText}%0A`;
+                }
+
+                if (mensagem.trim() !== '') {
+                    textoMsg += `*Mensagem Adicional:* ${mensagem}%0A`;
+                }
+
+                const whatsappNumber = "5511912847901"; 
+                const url = `https://wa.me/${whatsappNumber}?text=${textoMsg}`;
+                
+                window.open(url, '_blank');
+                
+                document.getElementById('success-msg').classList.remove('hidden');
+                this.reset();
+            });
+        }
     </script>
 </body>
 </html>
