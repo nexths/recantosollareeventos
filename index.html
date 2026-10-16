@@ -8,9 +8,6 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Swiper CSS para o Carrossel Interativo -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
     <!-- Google Fonts: Playfair Display (Serif para Títulos) e Lato (Sans-serif para corpo) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,15 +74,22 @@
             background: linear-gradient(to bottom, rgba(45, 55, 72, 0.4), rgba(45, 55, 72, 0.7));
         }
 
-        /* Estilização do Swiper Galeria */
-        .swiper-gallery .swiper-wrapper {
-            transition-timing-function: linear !important;
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            width: 100%;
         }
-        .swiper-gallery {
-            cursor: grab;
+
+        .marquee-content {
+            display: flex;
+            width: max-content;
+            animation: scroll-marquee 90s linear infinite;
         }
-        .swiper-gallery:active {
-            cursor: grabbing;
+
+        @keyframes scroll-marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } 
         }
     </style>
 </head>
@@ -296,178 +300,323 @@
         </div>
     </section>
 
-    <!-- Galeria com Swiper Interativo (Drag & Swipe) -->
+    <!-- Galeria -->
     <section id="galeria" class="py-24 bg-white overflow-hidden">
         <div class="text-center mb-16 px-4">
             <span class="text-gold uppercase tracking-widest text-sm font-semibold mb-2 block">Nosso Espaço</span>
             <h2 class="font-serif text-4xl text-darkgray mb-4">Galeria de Inspirações</h2>
             <div class="w-24 h-[1px] bg-sage mx-auto"></div>
-            <p class="text-gray-500 mt-6 text-sm max-w-xl mx-auto">Navegue pelas nossas memórias. Clique e arraste para explorar o carrossel.</p>
+            <p class="text-gray-500 mt-6 text-sm max-w-xl mx-auto">Navegue pelas nossas memórias com um design editorial reto e sofisticado.</p>
         </div>
 
-        <div class="swiper swiper-gallery py-8">
-            <div class="swiper-wrapper">
+        <div class="marquee-container py-8">
+            <div class="marquee-content gap-4">
                 
+                <!-- === PRIMEIRA SEQUÊNCIA (Fotos 01 a 30 Reordenadas) === -->
                 <!-- BLOCO 1 -->
-                <div class="swiper-slide !w-auto flex-none shrink-0 px-2">
-                    <div class="w-[800px] md:w-[1000px] flex flex-col gap-4">
-                        <div class="flex h-[300px] md:h-[400px] gap-4">
-                            <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
-                                <img src="assets/foto-galeria-sollare-01.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                <div class="flex-none shrink-0 w-[800px] md:w-[1000px] flex flex-col gap-4 px-2">
+                    <div class="flex h-[300px] md:h-[400px] gap-4">
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-01.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <div class="w-1/3 h-full flex flex-col gap-4">
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-02.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
                             </div>
-                            <div class="w-1/3 h-full flex flex-col gap-4">
-                                <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
-                                    <img src="assets/foto-galeria-sollare-02.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
-                                </div>
-                                <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
-                                    <img src="assets/foto-galeria-sollare-03.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
-                                </div>
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-03.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
                             </div>
                         </div>
-                        <div class="flex h-[200px] md:h-[250px] gap-4">
-                            <div class="w-1/3 h-full overflow-hidden shadow-sm cursor-pointer">
-                                <img src="assets/foto-galeria-sollare-04.webp" alt="Espaço Sollare" class="w-full h-full object-cover object-top img-zoom-hover gallery-img">
-                            </div>
-                            <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
-                                <img src="assets/foto-galeria-sollare-19.webp" alt="Madrinhas de Azul" class="w-full h-full object-cover object-center img-zoom-hover gallery-img">
-                            </div>
+                    </div>
+                    <div class="flex h-[200px] md:h-[250px] gap-4">
+                        <div class="w-1/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-04.webp" alt="Espaço Sollare" class="w-full h-full object-cover object-top img-zoom-hover gallery-img">
+                        </div>
+                        <!-- Foto Comprida: Madrinhas de Azul com ajuste focal superior -->
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-19.webp" alt="Madrinhas de Azul" class="w-full h-full object-cover object-[center_80%] img-zoom-hover gallery-img">
                         </div>
                     </div>
                 </div>
 
                 <!-- BLOCO 2 -->
-                <div class="swiper-slide !w-auto flex-none shrink-0 px-2">
-                    <div class="w-[800px] md:w-[1000px] flex flex-col gap-4">
-                        <div class="flex h-[300px] md:h-[400px] gap-4">
-                            <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
-                                <img src="assets/foto-galeria-sollare-06.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                <div class="flex-none shrink-0 w-[800px] md:w-[1000px] flex flex-col gap-4 px-2">
+                    <div class="flex h-[300px] md:h-[400px] gap-4">
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-06.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <div class="w-1/3 h-full flex flex-col gap-4">
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-07.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
                             </div>
-                            <div class="w-1/3 h-full flex flex-col gap-4">
-                                <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
-                                    <img src="assets/foto-galeria-sollare-07.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
-                                </div>
-                                <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
-                                    <img src="assets/foto-galeria-sollare-08.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
-                                </div>
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-08.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
                             </div>
                         </div>
-                        <div class="flex h-[200px] md:h-[250px] gap-4">
-                            <div class="w-1/3 h-full overflow-hidden shadow-sm cursor-pointer">
-                                <img src="assets/foto-galeria-sollare-09.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
-                            </div>
-                            <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
-                                <img src="assets/foto-galeria-sollare-20.webp" alt="Noivos P&B" class="w-full h-full object-cover object-center img-zoom-hover gallery-img">
-                            </div>
+                    </div>
+                    <div class="flex h-[200px] md:h-[250px] gap-4">
+                        <div class="w-1/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-09.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <!-- Foto Comprida: P&B Mantida Perfeita -->
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-20.webp" alt="Noivos P&B" class="w-full h-full object-cover object-center img-zoom-hover gallery-img">
                         </div>
                     </div>
                 </div>
 
                 <!-- BLOCO 3 -->
-                <div class="swiper-slide !w-auto flex-none shrink-0 px-2">
-                    <div class="w-[800px] md:w-[1000px] flex flex-col gap-4">
-                        <div class="flex h-[300px] md:h-[400px] gap-4">
-                            <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
-                                <img src="assets/foto-galeria-sollare-11.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                <div class="flex-none shrink-0 w-[800px] md:w-[1000px] flex flex-col gap-4 px-2">
+                    <div class="flex h-[300px] md:h-[400px] gap-4">
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-11.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <div class="w-1/3 h-full flex flex-col gap-4">
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-12.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
                             </div>
-                            <div class="w-1/3 h-full flex flex-col gap-4">
-                                <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
-                                    <img src="assets/foto-galeria-sollare-12.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
-                                </div>
-                                <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
-                                    <img src="assets/foto-galeria-sollare-13.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
-                                </div>
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-13.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
                             </div>
                         </div>
-                        <div class="flex h-[200px] md:h-[250px] gap-4">
-                            <div class="w-1/3 h-full overflow-hidden shadow-sm cursor-pointer">
-                                <img src="assets/foto-galeria-sollare-14.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
-                            </div>
-                            <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
-                                <img src="assets/foto-galeria-sollare-18.webp" alt="Padrinhos Homens" class="w-full h-full object-cover object-[center_80%] img-zoom-hover gallery-img">
-                            </div>
+                    </div>
+                    <div class="flex h-[200px] md:h-[250px] gap-4">
+                        <div class="w-1/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-14.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <!-- Foto Comprida: Padrinhos Homens com enquadramento superior -->
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-18.webp" alt="Padrinhos Homens" class="w-full h-full object-cover object-[center_80%] img-zoom-hover gallery-img">
                         </div>
                     </div>
                 </div>
 
                 <!-- BLOCO 4 -->
-                <div class="swiper-slide !w-auto flex-none shrink-0 px-2">
-                    <div class="w-[800px] md:w-[1000px] flex flex-col gap-4">
-                        <div class="flex h-[300px] md:h-[400px] gap-4">
-                            <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
-                                <img src="assets/foto-galeria-sollare-16.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                <div class="flex-none shrink-0 w-[800px] md:w-[1000px] flex flex-col gap-4 px-2">
+                    <div class="flex h-[300px] md:h-[400px] gap-4">
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-16.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <div class="w-1/3 h-full flex flex-col gap-4">
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-17.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
                             </div>
-                            <div class="w-1/3 h-full flex flex-col gap-4">
-                                <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
-                                    <img src="assets/foto-galeria-sollare-17.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
-                                </div>
-                                <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
-                                    <img src="assets/foto-galeria-sollare-10.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
-                                </div>
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-10.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
                             </div>
                         </div>
-                        <div class="flex h-[200px] md:h-[250px] gap-4">
-                            <div class="w-1/3 h-full overflow-hidden shadow-sm cursor-pointer">
-                                <img src="assets/foto-galeria-sollare-21.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
-                            </div>
-                            <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
-                                <img src="assets/foto-galeria-sollare-15.webp" alt="Mesa de Doces" class="w-full h-full object-cover object-center img-zoom-hover gallery-img">
-                            </div>
+                    </div>
+                    <div class="flex h-[200px] md:h-[250px] gap-4">
+                        <div class="w-1/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-21.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <!-- Foto Comprida: Decoração/Mesa com motivo no centro -->
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-15.webp" alt="Mesa de Doces" class="w-full h-full object-cover object-center img-zoom-hover gallery-img">
                         </div>
                     </div>
                 </div>
 
-                <!-- BLOCO 5 (Foto 24 trocada com a 27 do Bloco 6 para separar da 23) -->
-                <div class="swiper-slide !w-auto flex-none shrink-0 px-2">
-                    <div class="w-[800px] md:w-[1000px] flex flex-col gap-4">
-                        <div class="flex h-[300px] md:h-[400px] gap-4">
-                            <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
-                                <img src="assets/foto-galeria-sollare-22.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                <!-- BLOCO 5 -->
+                <div class="flex-none shrink-0 w-[800px] md:w-[1000px] flex flex-col gap-4 px-2">
+                    <div class="flex h-[300px] md:h-[400px] gap-4">
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-22.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <div class="w-1/3 h-full flex flex-col gap-4">
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-23.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
                             </div>
-                            <div class="w-1/3 h-full flex flex-col gap-4">
-                                <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
-                                    <img src="assets/foto-galeria-sollare-23.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
-                                </div>
-                                <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
-                                    <!-- Entrou a foto 27 aqui para afastar da 23 -->
-                                    <img src="assets/foto-galeria-sollare-27.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
-                                </div>
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-24.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
                             </div>
                         </div>
-                        <div class="flex h-[200px] md:h-[250px] gap-4">
-                            <div class="w-1/3 h-full overflow-hidden shadow-sm cursor-pointer">
-                                <img src="assets/foto-galeria-sollare-25.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
-                            </div>
-                            <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
-                                <img src="assets/foto-galeria-sollare-05.webp" alt="Convidados de Verde" class="w-full h-full object-cover object-[center_15%] img-zoom-hover gallery-img">
-                            </div>
+                    </div>
+                    <div class="flex h-[200px] md:h-[250px] gap-4">
+                        <div class="w-1/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-25.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <!-- Foto Comprida: Padrinhos de Verde com respiro no topo -->
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-05.webp" alt="Convidados de Verde" class="w-full h-full object-cover object-[center_15%] img-zoom-hover gallery-img">
                         </div>
                     </div>
                 </div>
 
                 <!-- BLOCO 6 -->
-                <div class="swiper-slide !w-auto flex-none shrink-0 px-2">
-                    <div class="w-[800px] md:w-[1000px] flex flex-col gap-4">
-                        <div class="flex h-[300px] md:h-[400px] gap-4">
-                            <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
-                                <img src="assets/foto-galeria-sollare-26.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                <div class="flex-none shrink-0 w-[800px] md:w-[1000px] flex flex-col gap-4 px-2">
+                    <div class="flex h-[300px] md:h-[400px] gap-4">
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-26.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <div class="w-1/3 h-full flex flex-col gap-4">
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-27.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
                             </div>
-                            <div class="w-1/3 h-full flex flex-col gap-4">
-                                <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
-                                    <!-- A foto 24 veio para aqui -->
-                                    <img src="assets/foto-galeria-sollare-24.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
-                                </div>
-                                <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
-                                    <img src="assets/foto-galeria-sollare-28.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
-                                </div>
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-28.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
                             </div>
                         </div>
-                        <div class="flex h-[200px] md:h-[250px] gap-4">
-                            <div class="w-1/3 h-full overflow-hidden shadow-sm cursor-pointer">
-                                <img src="assets/foto-galeria-sollare-29.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                    </div>
+                    <div class="flex h-[200px] md:h-[250px] gap-4">
+                        <div class="w-1/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-29.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <!-- Foto Comprida: Festa/Dança centralizada -->
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-30.webp" alt="Festa Noivos" class="w-full h-full object-cover object-center img-zoom-hover gallery-img">
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- === SEGUNDA SEQUÊNCIA DUPLICADA (Garante o Loop Infinito Perfeito) === -->
+                <!-- BLOCO 1 (Cópia) -->
+                <div class="flex-none shrink-0 w-[800px] md:w-[1000px] flex flex-col gap-4 px-2">
+                    <div class="flex h-[300px] md:h-[400px] gap-4">
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-01.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <div class="w-1/3 h-full flex flex-col gap-4">
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-02.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
                             </div>
-                            <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
-                                <img src="assets/foto-galeria-sollare-30.webp" alt="Festa Noivos" class="w-full h-full object-cover object-center img-zoom-hover gallery-img">
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-03.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
                             </div>
+                        </div>
+                    </div>
+                    <div class="flex h-[200px] md:h-[250px] gap-4">
+                        <div class="w-1/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-04.webp" alt="Espaço Sollare" class="w-full h-full object-cover object-top img-zoom-hover gallery-img">
+                        </div>
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-19.webp" alt="Madrinhas de Azul" class="w-full h-full object-cover object-[center_80%] img-zoom-hover gallery-img">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOCO 2 (Cópia) -->
+                <div class="flex-none shrink-0 w-[800px] md:w-[1000px] flex flex-col gap-4 px-2">
+                    <div class="flex h-[300px] md:h-[400px] gap-4">
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-06.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <div class="w-1/3 h-full flex flex-col gap-4">
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-07.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                            </div>
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-08.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex h-[200px] md:h-[250px] gap-4">
+                        <div class="w-1/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-09.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-20.webp" alt="Noivos P&B" class="w-full h-full object-cover object-center img-zoom-hover gallery-img">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOCO 3 (Cópia) -->
+                <div class="flex-none shrink-0 w-[800px] md:w-[1000px] flex flex-col gap-4 px-2">
+                    <div class="flex h-[300px] md:h-[400px] gap-4">
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-11.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <div class="w-1/3 h-full flex flex-col gap-4">
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-12.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                            </div>
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-13.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex h-[200px] md:h-[250px] gap-4">
+                        <div class="w-1/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-14.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-18.webp" alt="Padrinhos Homens" class="w-full h-full object-cover object-[center_15%] img-zoom-hover gallery-img">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOCO 4 (Cópia) -->
+                <div class="flex-none shrink-0 w-[800px] md:w-[1000px] flex flex-col gap-4 px-2">
+                    <div class="flex h-[300px] md:h-[400px] gap-4">
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-16.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <div class="w-1/3 h-full flex flex-col gap-4">
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-17.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                            </div>
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-10.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex h-[200px] md:h-[250px] gap-4">
+                        <div class="w-1/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-21.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-15.webp" alt="Mesa de Doces" class="w-full h-full object-cover object-center img-zoom-hover gallery-img">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOCO 5 (Cópia) -->
+                <div class="flex-none shrink-0 w-[800px] md:w-[1000px] flex flex-col gap-4 px-2">
+                    <div class="flex h-[300px] md:h-[400px] gap-4">
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-22.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <div class="w-1/3 h-full flex flex-col gap-4">
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-23.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                            </div>
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-24.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex h-[200px] md:h-[250px] gap-4">
+                        <div class="w-1/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-25.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-05.webp" alt="Convidados de Verde" class="w-full h-full object-cover object-[center_15%] img-zoom-hover gallery-img">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOCO 6 (Cópia) -->
+                <div class="flex-none shrink-0 w-[800px] md:w-[1000px] flex flex-col gap-4 px-2">
+                    <div class="flex h-[300px] md:h-[400px] gap-4">
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-26.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <div class="w-1/3 h-full flex flex-col gap-4">
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-27.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                            </div>
+                            <div class="h-[calc(50%-0.5rem)] w-full overflow-hidden shadow-sm cursor-pointer">
+                                <img src="assets/foto-galeria-sollare-28.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex h-[200px] md:h-[250px] gap-4">
+                        <div class="w-1/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-29.webp" alt="Espaço Sollare" class="w-full h-full object-cover img-zoom-hover gallery-img">
+                        </div>
+                        <div class="w-2/3 h-full overflow-hidden shadow-sm cursor-pointer">
+                            <img src="assets/foto-galeria-sollare-30.webp" alt="Festa Noivos" class="w-full h-full object-cover object-center img-zoom-hover gallery-img">
                         </div>
                     </div>
                 </div>
@@ -603,29 +752,7 @@
         <button id="lightbox-next" class="absolute right-4 md:right-8 text-white hover:text-gray-400 text-5xl focus:outline-none select-none z-50 p-4 drop-shadow-lg">&#10095;</button>
     </div>
 
-    <!-- Swiper JS Script -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
     <script>
-        // Inicialização do Swiper Carrossel com Drag/Swipe e Autoplay Infinito
-        const swiper = new Swiper('.swiper-gallery', {
-            loop: true,
-            slidesPerView: 'auto',
-            spaceBetween: 16,
-            grabCursor: true,
-            speed: 10000,
-            autoplay: {
-                delay: 0,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: false,
-            },
-            freeMode: {
-                enabled: true,
-                momentum: true,
-            },
-        });
-
-        // Mobile Menu Toggle
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
@@ -640,7 +767,6 @@
             });
         });
 
-        // Dynamic Header
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -652,7 +778,6 @@
             }
         });
 
-        // Lightbox Logic
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const closeBtn = document.getElementById('lightbox-close');
